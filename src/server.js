@@ -1,32 +1,27 @@
-var compression = require('compression');
-var express = require('express');
-var bodyParser = require('body-parser');
-var path = require('path');
-var winston = require('winston');
+// logger.log -> error, warn, info, verbose, debug, silly
 
-var transport = new winston.transports.Console({ level: process.env.LEVEL, colorize: true });
-var logger = new (winston.Logger)({
+import express from 'express';
+import compression from 'compression';
+import bodyParser from 'body-parser';
+import path from 'path';
+import winston from 'winston';
+
+const transport = new winston.transports.Console({level: process.env.LEVEL, colorize: true});
+const logger = new (winston.Logger)({
   transports: [transport]
 });
 
-logger.log('error', 'alpha');
-logger.log('warn', 'beta');
-logger.log('info', 'gamma');
-logger.log('verbose', 'delta');
-logger.log('debug', 'epsilion');
-logger.log('silly', 'zeta');
-
-var app = express();
+const app = express();
 
 app.use(compression());
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.listen(process.env.PORT, function(){
-  console.log('[LISTENING] - port:', process.env.PORT);
+app.listen(process.env.PORT, () => {
+  logger.log('info', '[LISTENING] - port: %d', process.env.PORT);
 });
 
-app.get('/hello', function(req, res){
+app.get('/hello', (req, res) => {
   res.send({payload: 'world'});
 });
