@@ -4,7 +4,8 @@
   "scripts": {
     "test": "mocha",
     "build": "babel src -d dst",
-    "watch": "chokidar 'src/**/*.js' -c 'npm run build'",
+    "lint": "eslint src/**",
+    "watch": "chokidar 'src/**/*.js' -c 'npm run build && npm run lint -s'",
     "dev": "LEVEL=silly PORT=3333 nodemon dst/server.js"
   },
   "author": "Chyld Medford",
