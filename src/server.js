@@ -11,6 +11,8 @@ const logger = new (winston.Logger)({
   transports: [transport],
 });
 
+logger.log('info', '[WINSTON] - log level: %s', process.env.LEVEL);
+
 const app = express();
 
 app.use(compression());
@@ -19,7 +21,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(process.env.PORT, () => {
-  logger.log('info', '[LISTENING] - port: %d', process.env.PORT);
+  logger.log('info', '[EXPRESS] - listening port: %d', process.env.PORT);
 });
 
 app.get('/hello', (req, res) => {
