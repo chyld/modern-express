@@ -3,7 +3,6 @@
 // todo:
 // test - unit, route, e2e
 // test - travis, jenkins, ci
-// jsdoc
 // async, promises, await
 // mocking - http, db, file i/o
 // auth
