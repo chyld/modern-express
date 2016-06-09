@@ -1,7 +1,6 @@
 // logger.log -> error, warn, info, verbose, debug, silly
 
 // todo:
-// test - code coverage
 // test - unit, route, e2e
 // test - travis, jenkins, ci
 // jsdoc
