@@ -1,5 +1,14 @@
 // logger.log -> error, warn, info, verbose, debug, silly
 
+// todo:
+// test - code coverage
+// test - unit, route, e2e
+// test - travis, jenkins, ci
+// jsdoc
+// async, promises, await
+// mocking - http, db, file i/o
+// auth
+
 import express from 'express';
 import compression from 'compression';
 import bodyParser from 'body-parser';
@@ -20,10 +29,8 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+app.use('/games', require('./games'));
+
 app.listen(process.env.PORT, () => {
   logger.log('info', '[EXPRESS] - listening port: %d', process.env.PORT);
-});
-
-app.get('/hello', (req, res) => {
-  res.send({ payload: 'world' });
 });
