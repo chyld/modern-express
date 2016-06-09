@@ -6,5 +6,5 @@ babel src -d dst
 echo "-> LINTING"
 eslint src test -f stylish --color
 echo "-> TESTING"
-mocha
+mocha test --recursive
 echo "-> DONE"

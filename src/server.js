@@ -6,8 +6,6 @@ import bodyParser from 'body-parser';
 import path from 'path';
 import winston from 'winston';
 
-var x;
-
 const transport = new winston.transports.Console({ level: process.env.LEVEL, colorize: true });
 const logger = new (winston.Logger)({
   transports: [transport],
