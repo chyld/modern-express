@@ -1,6 +1,9 @@
 #!/bin/bash
 
 clear
+echo "-> CLEAN"
+rm -rf coverage docs dst logs
+mkdir logs
 echo "-> COMPILING"
 babel src -d dst
 echo "-> LINTING"
