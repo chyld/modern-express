@@ -11,20 +11,34 @@ const router = module.exports = express.Router();
 
 logger.log('info', '[ROUTER] - venus route');
 
+router.get('/apogee', async (req, res) => {
+  logger.log('debug', '[VENUS] - get /venus/apogee');
+  const url = 'https://api.twitch.tv/kraken/games/top';
+  const data = await pReq(url);
+  const names = data.top.map(g => g.game.name);
+  const objs = await Game.create(names.map(n => ({ name: n })));
+  await pWrite(names.join('\n'));
+  res.json({payload: 'good'});
+});
+
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+// -------------------------------------------------------------------------- //
+
 router.get('/orbit', (req, res) => {
   logger.log('debug', '[VENUS] - get /venus/orbit');
   const url = 'https://api.twitch.tv/kraken/games/top';
   pReq(url)
   .then(data => data.top.map(g => g.game.name))
   .then(games => {
-    logger.log('debug', 'save game %j', games);
-    let g = new Game({name: games[0]});
-    return g.save();
+    logger.log('debug', 'saving game %j', games);
+    return Game.create(games.map(g => ({ name: g })));
   })
-  .then(x => {
-    console.log('***> x:', x);
+  .then(objs => {
+    logger.log('silly', 'saved game %j', objs);
+    return objs.map(o => o.name).join('\n');
   })
-  //.then(games => pWrite(games.join('\n')))
+  .then(str => pWrite(str))
   .then(() => {
     res.json({ payload: 'done' });
   });

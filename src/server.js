@@ -1,10 +1,8 @@
 // logger.log -> error, warn, info, verbose, debug, silly
 
 // todo:
-// test - unit, route, e2e
+// test - unit, route, e2e with spies, stubs and mocks
 // test - travis, jenkins, ci
-// async, promises, await
-// mocking - http, db, file i/o
 // auth
 // caching, scaling, perf testing
 
