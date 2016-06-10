@@ -6,6 +6,7 @@ import Promise from 'bluebird';
 import fs from 'fs';
 import path from 'path';
 import logger from '../../utils/logging';
+import Game from '../game/game';
 const router = module.exports = express.Router();
 
 logger.log('info', '[ROUTER] - venus route');
@@ -15,7 +16,15 @@ router.get('/orbit', (req, res) => {
   const url = 'https://api.twitch.tv/kraken/games/top';
   pReq(url)
   .then(data => data.top.map(g => g.game.name))
-  .then(games => pWrite(games.join('\n')))
+  .then(games => {
+    logger.log('debug', 'save game %j', games);
+    let g = new Game({name: games[0]});
+    return g.save();
+  })
+  .then(x => {
+    console.log('***> x:', x);
+  })
+  //.then(games => pWrite(games.join('\n')))
   .then(() => {
     res.json({ payload: 'done' });
   });
