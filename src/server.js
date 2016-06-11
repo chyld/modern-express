@@ -2,6 +2,7 @@
 
 // todo:
 // test - unit, route, e2e with spies, stubs and mocks
+// test - use separate test db, clean, before each, etc.
 // test - travis, jenkins, ci
 // auth
 // caching, scaling, perf testing
