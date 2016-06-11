@@ -24,6 +24,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/games', require('./games'));
 app.use('/venus', require('./models/level1/venus'));
 
-app.listen(process.env.PORT, () => {
-  logger.log('info', '[EXPRESS] - listening port: %d', process.env.PORT);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  logger.log('info', '[EXPRESS] - listening port: %d', port);
 });
+
+module.exports = app;
