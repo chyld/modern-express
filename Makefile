@@ -8,8 +8,8 @@ main:
 
 clean:
 	@echo [clean]
-	@rm -rf coverage docs dst logs
-	@mkdir logs
+	@rm -rf coverage docs dst logs temp
+	@mkdir logs temp
 
 compile:
 	@echo [compile]
