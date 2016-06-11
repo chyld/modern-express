@@ -16,9 +16,9 @@ router.get('/apogee', async (req, res) => {
   const url = 'https://api.twitch.tv/kraken/games/top';
   const data = await pReq(url);
   const names = data.top.map(g => g.game.name);
-  const objs = await Game.create(names.map(n => ({ name: n })));
+  await Game.create(names.map(n => ({ name: n })));
   await pWrite(names.join('\n'));
-  res.json({payload: 'good'});
+  res.json({ payload: 'good' });
 });
 
 // -------------------------------------------------------------------------- //

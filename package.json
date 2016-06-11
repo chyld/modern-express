@@ -2,13 +2,13 @@
   "name": "ignite",
   "version": "1.0.1",
   "scripts": {
-    "watch": "chokidar 'src/**/*.js' 'test/**/*.js' -c './build.sh'",
     "dev": "LEVEL=silly PORT=3333 nodemon dst/server.js"
   },
   "author": "Chyld Medford",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.9.0",
+    "babel-eslint": "^6.0.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.8.0",
     "babel-preset-stage-0": "^6.5.0",
@@ -21,6 +21,7 @@
     "eslint-plugin-react": "^5.1.1",
     "istanbul": "^0.4.3",
     "jsdoc": "^3.4.0",
+    "jsdoc-strip-async-await": "^0.1.0",
     "mocha": "^2.5.3",
     "nock": "^8.0.0",
     "nodemon": "^1.9.2",
