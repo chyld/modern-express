@@ -24,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/games', require('./games'));
 app.use('/venus', require('./models/level1/venus'));
+app.use('/es6', require('./es6/es6'));
 
 const port = process.env.PORT || 3000;
 
